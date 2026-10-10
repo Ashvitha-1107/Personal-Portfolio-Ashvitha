@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ashvitha M C P – Computer Science Student & Web Developer</title>
+<meta name="description" content="Portfolio of Ashvitha M C P, a B.E. Computer Science and Engineering student at KPR Institute of Engineering and Technology.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,800&family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ---------- Tokens ---------- */
+  :root {
+    --bg: #eef1f5;
+    --surface: #ffffff;
+    --ink: #111827;
+    --muted: #536074;
+    --line: #cfd6e0;
+    --accent: #2f4bff;
+    --accent-ink: #ffffff;
+    --mark: #ffd84d;
+
+    --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+    --body: "Instrument Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+    --side: 280px;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0f1420; --surface: #171e2d; --ink: #eef1f6; --muted: #98a4b8;
+      --line: #2a3448; --accent: #7e90ff; --accent-ink: #0f1420; --mark: #ffd84d;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0f1420; --surface: #171e2d; --ink: #eef1f6; --muted: #98a4b8;
+    --line: #2a3448; --accent: #7e90ff; --accent-ink: #0f1420; --mark: #ffd84d;
+  }
+
+  /* ---------- Base ---------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 24px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--body);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: inherit; }
+  img, svg { max-width: 100%; display: block; }
+  :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 4px; }
+  .skip {
+    position: absolute; left: 12px; top: -60px; background: var(--ink); color: var(--bg);
+    padding: 10px 16px; border-radius: 6px; z-index: 100; text-decoration: none;
+  }
+  .skip:focus { top: 12px; }
+
+  /* ---------- Layout ---------- */
+  .shell { display: grid; grid-template-columns: var(--side) 1fr; min-height: 100vh; }
+
+  .side {
+    position: sticky; top: 0; height: 100vh;
+    padding: 40px 32px;
+    display: flex; flex-direction: column; justify-content: space-between;
+    border-right: 1px solid var(--line);
+  }
+  .brand { font-family: var(--display); font-weight: 800; font-size: 1.3rem; letter-spacing: -0.02em; text-decoration: none; }
+  .brand span { background: var(--mark); color: #111827; padding: 0 6px; border-radius: 4px; }
+
+  .nav { list-style: none; margin: 40px 0 0; padding: 0; display: grid; gap: 4px; }
+  .nav a {
+    display: block; padding: 6px 0; text-decoration: none; color: var(--muted);
+    font-weight: 500; border-left: 3px solid transparent; padding-left: 14px; margin-left: -17px;
+    transition: color .15s, border-color .15s;
+  }
+  .nav a:hover { color: var(--ink); }
+  .nav a.active { color: var(--ink); border-left-color: var(--accent); }
+
+  .side-foot { display: grid; gap: 14px; font-size: .95rem; color: var(--muted); }
+  .clock { font-variant-numeric: tabular-nums; }
+  .theme-btn {
+    justify-self: start; background: none; border: 1px solid var(--line); color: var(--ink);
+    padding: 7px 14px; border-radius: 999px; font: inherit; font-size: .9rem; cursor: pointer;
+  }
+  .theme-btn:hover { border-color: var(--ink); }
+
+  main { padding: 0 clamp(24px, 6vw, 88px); max-width: 1000px; }
+  section { padding: clamp(64px, 10vw, 112px) 0; border-bottom: 1px solid var(--line); }
+  section:last-of-type { border-bottom: 0; }
+
+  h1, h2, h3 { font-family: var(--display); line-height: 1.05; margin: 0; letter-spacing: -0.03em; }
+  h2 { font-size: clamp(1.9rem, 4vw, 2.6rem); font-weight: 800; margin-bottom: 36px; }
+  p { margin: 0 0 1em; max-width: 62ch; }
+
+  /* ---------- Hero ---------- */
+  .hero { padding-top: clamp(64px, 12vw, 140px); }
+  .hero h1 {
+    font-size: clamp(2.6rem, 8vw, 6.2rem);
+    font-weight: 800;
+    letter-spacing: -0.045em;
+    line-height: .98;
+  }
+  .hero h1 .soft { color: var(--muted); font-weight: 400; }
+  .hero .lede { font-size: 1.25rem; margin-top: 32px; color: var(--muted); max-width: 52ch; }
+  .hero .lede strong { color: var(--ink); font-weight: 600; background: linear-gradient(transparent 62%, var(--mark) 62%); }
+  .actions { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 36px; }
+  .btn {
+    display: inline-block; padding: 13px 24px; border-radius: 999px; font-weight: 600; text-decoration: none;
+    background: var(--accent); color: var(--accent-ink); border: 2px solid var(--accent);
+    transition: transform .15s;
+  }
+  .btn:hover { transform: translateY(-2px); }
+  .btn.ghost { background: transparent; color: var(--ink); border-color: var(--line); }
+  .btn.ghost:hover { border-color: var(--ink); }
+
+  /* page-load: one orchestrated moment */
+  .hero h1 .w { display: inline-block; opacity: 0; transform: translateY(.4em); animation: rise .7s cubic-bezier(.2,.7,.2,1) forwards; }
+  .hero h1 .w:nth-child(2) { animation-delay: .08s; }
+  .hero h1 .w:nth-child(3) { animation-delay: .16s; }
+  .hero h1 .w:nth-child(4) { animation-delay: .24s; }
+  .hero h1 .w:nth-child(5) { animation-delay: .32s; }
+  .hero h1 .w:nth-child(6) { animation-delay: .40s; }
+  @keyframes rise { to { opacity: 1; transform: none; } }
+
+  /* ---------- About ---------- */
+  .about { display: grid; grid-template-columns: 1fr 230px; gap: 48px; align-items: start; }
+  .portrait {
+    aspect-ratio: 4 / 5; border-radius: var(--radius); overflow: hidden; background: var(--mark);
+  }
+  .portrait svg, .portrait img { width: 100%; height: 100%; object-fit: cover; }
+  .facts { list-style: none; padding: 0; margin: 28px 0 0; display: grid; gap: 8px; color: var(--muted); }
+  .facts b { color: var(--ink); font-weight: 600; }
+
+  /* ---------- Projects ---------- */
+  .projects { border-top: 1px solid var(--line); }
+  .project {
+    display: grid; grid-template-columns: 1fr auto; gap: 8px 32px;
+    padding: 28px 0; border-bottom: 1px solid var(--line); text-decoration: none;
+    transition: padding .2s, background .2s;
+  }
+  .project:hover { padding-left: 16px; padding-right: 16px; background: var(--surface); }
+  .project h3 { font-size: 1.6rem; font-weight: 600; letter-spacing: -0.02em; }
+  .project .year { color: var(--muted); font-variant-numeric: tabular-nums; align-self: start; }
+  .project p { color: var(--muted); margin: 6px 0 0; grid-column: 1; }
+  .tags { grid-column: 1; display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; padding: 0; list-style: none; }
+  .tags li { font-size: .85rem; padding: 3px 12px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); }
+
+  /* ---------- Skills ---------- */
+  .skills { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 40px; }
+  .skills h3 { font-size: 1.15rem; font-weight: 600; margin-bottom: 12px; letter-spacing: -0.01em; }
+  .skills ul { list-style: none; margin: 0; padding: 0; color: var(--muted); }
+  .skills li { padding: 6px 0; border-bottom: 1px solid var(--line); }
+
+  /* ---------- Education ---------- */
+  .timeline { list-style: none; margin: 0; padding: 0 0 0 28px; border-left: 2px solid var(--line); display: grid; gap: 40px; }
+  .timeline li { position: relative; }
+  .timeline li::before {
+    content: ""; position: absolute; left: -37px; top: 8px; width: 12px; height: 12px;
+    border-radius: 50%; background: var(--bg); border: 3px solid var(--accent);
+  }
+  .timeline time { color: var(--muted); font-size: .95rem; }
+  .timeline h3 { font-size: 1.35rem; font-weight: 600; margin: 4px 0 8px; letter-spacing: -0.01em; }
+  .timeline p { color: var(--muted); }
+
+  /* ---------- Contact ---------- */
+  .contact-big {
+    font-family: var(--display); font-weight: 800; letter-spacing: -0.04em;
+    font-size: clamp(1.4rem, 4.6vw, 3rem); line-height: 1.1; word-break: break-word;
+    text-decoration: none; border-bottom: 4px solid var(--mark);
+  }
+  .contact-big:hover { border-bottom-color: var(--accent); }
+  .links { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 32px; padding: 0; list-style: none; }
+  .links a { color: var(--muted); }
+  .links a:hover { color: var(--ink); }
+
+  form { display: grid; gap: 16px; margin-top: 48px; max-width: 520px; }
+  label { display: grid; gap: 6px; font-weight: 500; font-size: .95rem; }
+  input, textarea {
+    font: inherit; padding: 12px 14px; border: 1px solid var(--line); border-radius: var(--radius);
+    background: var(--surface); color: var(--ink);
+  }
+  textarea { min-height: 130px; resize: vertical; }
+  button.btn { cursor: pointer; font: inherit; font-weight: 600; justify-self: start; }
+  .form-note { color: var(--muted); font-size: .9rem; min-height: 1.4em; margin: 0; }
+
+  footer { padding: 32px 0 48px; color: var(--muted); font-size: .9rem; }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 860px) {
+    .shell { grid-template-columns: 1fr; }
+    .side {
+      position: sticky; top: 0; height: auto; z-index: 20; flex-direction: row; align-items: center;
+      padding: 12px 20px; background: var(--bg); border-right: 0; border-bottom: 1px solid var(--line);
+    }
+    .nav { margin: 0; display: flex; gap: 16px; overflow-x: auto; }
+    .nav a { border: 0; padding: 4px 0; margin: 0; white-space: nowrap; }
+    .nav a.active { color: var(--accent); }
+    .side-foot { display: none; }
+    .brand { margin-right: 20px; white-space: nowrap; }
+    .about { grid-template-columns: 1fr; }
+    .portrait { max-width: 210px; order: -1; }
+    html { scroll-padding-top: 72px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .hero h1 .w { animation: none; opacity: 1; transform: none; }
+    .btn, .project, .nav a { transition: none; }
+  }
+</style>
+</head>
+
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- Sidebar -->
+  <header class="side">
+    <div>
+      <a class="brand" href="#top"><span>AM</span> Ashvitha</a>
+      <nav aria-label="Primary">
+        <ul class="nav">
+          <li><a href="#about">About</a></li>
+          <li><a href="#work">Projects</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="side-foot">
+      <span>Local time (IST)<br><span class="clock" id="clock" aria-live="off"></span></span>
+      <button class="theme-btn" id="themeBtn" type="button" aria-label="Toggle dark mode">Switch theme</button>
+    </div>
+  </header>
+
+  <main id="main">
+
+    <!-- Hero -->
+    <section class="hero" id="top">
+      <h1>
+        <span class="w">Hi,</span>
+        <span class="w">I'm</span>
+        <span class="w">Ashvitha</span>
+        <span class="w">M C P.</span><br>
+        <span class="w soft">I love building</span>
+        <span class="w soft">for the web.</span>
+      </h1>
+      <p class="lede">I'm a <strong>Computer Science and Engineering student</strong> at KPR Institute of Engineering and Technology, learning to build clean, useful and accessible websites.</p>
+      <div class="actions">
+        <a class="btn" href="#work">See my projects</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About me</h2>
+      <div class="about">
+        <div>
+          <p>I'm pursuing my B.E. in Computer Science and Engineering at KPR Institute of Engineering and Technology. I enjoy turning ideas into working websites and apps, and I'm always learning something new.</p>
+          <p>I care about clear design, readable code and interfaces that are easy for everyone to use. I'm looking for internships and opportunities where I can learn and contribute.</p>
+          <ul class="facts">
+            <li><b>Degree:</b> B.E. Computer Science and Engineering</li>
+            <li><b>College:</b> KPR Institute of Engineering and Technology</li>
+            <li><b>Interests:</b> Web development, UI design, problem solving</li>
+            <li><b>Email:</b> <a href="mailto:ashvithamcp@gmail.com">ashvithamcp@gmail.com</a></li>
+          </ul>
+        </div>
+
+        <!-- Illustrated avatar. To use your own photo, replace the whole <svg>…</svg>
+             with: <img src="your-photo.jpg" alt="Ashvitha M C P"> -->
+        <div class="portrait">
+          <svg viewBox="0 0 200 250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Illustrated avatar of a smiling girl with long dark hair">
+            <rect width="200" height="250" fill="#ffd84d"/>
+            <!-- long hair behind -->
+            <path d="M38 105 C38 40 162 40 162 105 L166 215 C166 232 150 236 138 230 L62 230 C50 236 34 232 34 215 Z" fill="#1b1b2f"/>
+            <!-- shoulders / top -->
+            <path d="M16 250 C16 198 58 180 100 180 C142 180 184 198 184 250 Z" fill="#2f4bff"/>
+            <!-- neck -->
+            <rect x="87" y="146" width="26" height="42" rx="12" fill="#e3a37c"/>
+            <!-- face -->
+            <ellipse cx="100" cy="108" rx="42" ry="50" fill="#f2b690"/>
+            <!-- fringe -->
+            <path d="M56 104 C54 50 146 46 144 104 C128 82 100 74 82 80 C70 84 62 92 56 104 Z" fill="#1b1b2f"/>
+            <!-- eyes -->
+            <ellipse cx="84" cy="112" rx="4.2" ry="5" fill="#1b1b2f"/>
+            <ellipse cx="116" cy="112" rx="4.2" ry="5" fill="#1b1b2f"/>
+            <circle cx="85.5" cy="110" r="1.4" fill="#fff"/>
+            <circle cx="117.5" cy="110" r="1.4" fill="#fff"/>
+            <!-- brows -->
+            <path d="M76 100 Q84 95 92 99" stroke="#1b1b2f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <path d="M108 99 Q116 95 124 100" stroke="#1b1b2f" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+            <!-- cheeks -->
+            <circle cx="73" cy="127" r="6" fill="#ef9a8a" opacity=".5"/>
+            <circle cx="127" cy="127" r="6" fill="#ef9a8a" opacity=".5"/>
+            <!-- smile -->
+            <path d="M86 134 Q100 149 114 134" stroke="#a3453a" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <!-- bindi-style dot / earrings -->
+            <circle cx="58" cy="124" r="3.5" fill="#ffd84d"/>
+            <circle cx="142" cy="124" r="3.5" fill="#ffd84d"/>
+          </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects (sample entries: replace with your own) -->
+    <section id="work">
+      <h2>Projects</h2>
+      <div class="projects">
+
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <h3>Personal Portfolio</h3><span class="year">2026</span>
+          <p>This website: a responsive portfolio with dark mode, built with plain HTML, CSS and JavaScript.</p>
+          <ul class="tags"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+        </a>
+
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <h3>Project name 2</h3><span class="year">Year</span>
+          <p>Write one or two lines about what this project does and what problem it solves.</p>
+          <ul class="tags"><li>Tech 1</li><li>Tech 2</li></ul>
+        </a>
+
+        <a class="project" href="#" target="_blank" rel="noopener">
+          <h3>Project name 3</h3><span class="year">Year</span>
+          <p>Add a college mini-project, hackathon entry or something you built for fun.</p>
+          <ul class="tags"><li>Tech 1</li><li>Tech 2</li></ul>
+        </a>
+
+      </div>
+    </section>
+
+    <!-- Skills (edit to match what you know) -->
+    <section id="skills">
+      <h2>Skills</h2>
+      <div class="skills">
+        <div>
+          <h3>Programming</h3>
+          <ul><li>C</li><li>Java</li><li>Python</li><li>Data structures &amp; algorithms</li></ul>
+        </div>
+        <div>
+          <h3>Web</h3>
+          <ul><li>HTML &amp; CSS</li><li>JavaScript</li><li>Responsive design</li><li>Git &amp; GitHub</li></ul>
+        </div>
+        <div>
+          <h3>Core subjects</h3>
+          <ul><li>Database management (SQL)</li><li>Operating systems</li><li>Computer networks</li><li>Object-oriented programming</li></ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+      <h2>Education</h2>
+      <ol class="timeline">
+        <li>
+          <time>Currently pursuing</time>
+          <h3>B.E. Computer Science and Engineering</h3>
+          <p>KPR Institute of Engineering and Technology</p>
+        </li>
+        <li>
+          <time>Add your years</time>
+          <h3>Higher Secondary (12th)</h3>
+          <p>Add your school name and percentage here.</p>
+        </li>
+      </ol>
+    </section>
+
+    <!-- Contact -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>Have an opportunity, a project idea, or just want to say hello? Email me:</p>
+      <a class="contact-big" href="mailto:ashvithamcp@gmail.com">ashvithamcp@gmail.com</a>
+      <ul class="links">
+        <li><a href="https://github.com/" target="_blank" rel="noopener">GitHub</a></li>
+        <li><a href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a></li>
+      </ul>
+
+      <form id="contactForm" novalidate>
+        <label>Name
+          <input type="text" name="name" autocomplete="name" required>
+        </label>
+        <label>Email
+          <input type="email" name="email" autocomplete="email" required>
+        </label>
+        <label>Message
+          <textarea name="message" required></textarea>
+        </label>
+        <button class="btn" type="submit">Send message</button>
+        <p class="form-note" id="formNote" role="status"></p>
+      </form>
+    </section>
+
+    <footer>© <span id="year"></span> Ashvitha M C P. All rights reserved.</footer>
+  </main>
+</div>
+
+<script>
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Local time in sidebar
+  const clock = document.getElementById('clock');
+  function tick() {
+    clock.textContent = new Date().toLocaleTimeString('en-IN', {
+      hour: '2-digit', minute: '2-digit', timeZone: 'Asia/Kolkata'
+    });
+  }
+  tick(); setInterval(tick, 30000);
+
+  // Theme toggle (remembered when storage is available)
+  const root = document.documentElement;
+  try {
+    const saved = localStorage.getItem('theme');
+    if (saved) root.dataset.theme = saved;
+  } catch (e) {}
+  document.getElementById('themeBtn').addEventListener('click', () => {
+    const dark = root.dataset.theme
+      ? root.dataset.theme === 'dark'
+      : matchMedia('(prefers-color-scheme: dark)').matches;
+    const next = dark ? 'light' : 'dark';
+    root.dataset.theme = next;
+    try { localStorage.setItem('theme', next); } catch (e) {}
+  });
+
+  // Highlight current section in nav
+  const links = [...document.querySelectorAll('.nav a')];
+  const sections = links.map(a => document.querySelector(a.getAttribute('href')));
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        links.forEach(a => a.classList.toggle('active', a.getAttribute('href') === '#' + e.target.id));
+      }
+    });
+  }, { rootMargin: '-40% 0px -55% 0px' });
+  sections.forEach(s => s && io.observe(s));
+
+  // Contact form: opens the visitor's email app with the message filled in
+  document.getElementById('contactForm').addEventListener('submit', e => {
+    e.preventDefault();
+    const f = e.target, note = document.getElementById('formNote');
+    if (!f.name.value.trim() || !f.email.validity.valid || !f.message.value.trim()) {
+      note.textContent = 'Please fill in your name, a valid email and a message.';
+      return;
+    }
+    const subject = encodeURIComponent('Portfolio message from ' + f.name.value.trim());
+    const body = encodeURIComponent(f.message.value.trim() + '\n\n' + f.name.value.trim() + ' (' + f.email.value.trim() + ')');
+    window.location.href = 'mailto:ashvithamcp@gmail.com?subject=' + subject + '&body=' + body;
+    note.textContent = 'Opening your email app…';
+  });
+</script>
+</body>
+</html>
